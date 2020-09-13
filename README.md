@@ -30,6 +30,8 @@ Sign in page
 
 Login in page
 
+Hamburger menu to pull out add update and delete functions
+
 A button to switch between adult insults and child insults
 
 
