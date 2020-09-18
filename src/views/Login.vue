@@ -17,7 +17,7 @@ export default {
   },
  methods: {
     handleLogin: function(){
-      fetch('http://localhost:8000/users', {
+      fetch('http://localhost:8000/users/users/login/', {
         method: 'post',
         headers: {
           "Content-Type": "application/json",
@@ -28,7 +28,9 @@ export default {
         }),
       })
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) =>
+      this.$emit('loggedIn',data)
+      )
     },
   },
 };

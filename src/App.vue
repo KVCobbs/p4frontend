@@ -5,7 +5,7 @@
 
       
     </div>
-    <router-view/>
+    <router-view @loggedIn = "login($event)"/>
     <Footer/>
   </div>
 </template>
@@ -23,8 +23,16 @@ export default {
   data: function(){
     return {
       loggedIn:false,
-      token: '',
+      tokens: {},
       URL: 'http://localhost:8000'
+    }
+  },
+  methods: {
+    login: function(event){
+      console.log("event heard")
+      this.loggedIn = false
+      this.tokens = event
+      this.$router.push('/')
     }
   }
 };
