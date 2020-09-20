@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <Header v-bind:URL="URL"/>
+      <Header v-bind:URL="URL" v-bind:loggedIn = "loggedIn" @logout="logout"/>
 
       
     </div>
@@ -32,7 +32,11 @@ export default {
       console.log("event heard")
       this.loggedIn = false
       this.tokens = event
-      this.$router.push('/')
+      this.$router.push('/main')
+    },
+    logout: function(){
+      this.loggedIn = false
+      this.tokens = {};
     }
   }
 };

@@ -1,7 +1,17 @@
 <template>
-  <div>
-    <input class="input is-primary" type = "test" v-model = "username"/>
-    <input class="input is-primary" type = "password" v-model = "password"/>
+  <div class = "login">
+     <b-field label="Username"
+            type="is-success"
+            message="This username is available">
+            <b-input v-model = "username"></b-input>
+        </b-field>
+
+        <b-field label="Password">
+            <b-input type="password"
+                 v-model="password"
+                password-reveal>
+            </b-input>
+        </b-field>
     <br/>
     <button class="button is-info is-outlined" @click="handleLogin">Log In</button>
   </div>
@@ -36,3 +46,10 @@ export default {
 };
 </script>
 
+//Styling below
+<style>
+.login {
+  width: 50%;
+  margin: 10px auto;
+}
+</style>

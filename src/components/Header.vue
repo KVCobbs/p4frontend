@@ -1,15 +1,13 @@
 <template>
   <div class="header">
-    <b-navbar>
+     <b-navbar>
       <template slot="brand">
         <b-navbar-item tag="router-link" :to="{ path: '/' }">
-          <img
-            src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
-            alt="Lightweight UI components for Vue.js based on Bulma"
-          />
+          <span class = "logo">BITTER</span>
         </b-navbar-item>
       </template>
-      <template slot="start">
+
+     <!-- <template slot="start">
         <b-navbar-item href="#">
           <router-link to="/">Home</router-link>
         </b-navbar-item>
@@ -24,7 +22,7 @@
             Contact
           </b-navbar-item>
         </b-navbar-dropdown>
-      </template>
+      </template> -->
 
       <template slot="end">
         <b-navbar-item tag="div">
@@ -33,7 +31,8 @@
               <strong>Sign up</strong>
             </a>
             <a class="button is-light">
-              <router-link to="/login" v-bind:URL="URL">Log in</router-link>
+              <router-link to="/login" v-bind:URL="URL" v-if="!loggedIn"><button class="button is-info">Log in</button></router-link>
+                <button v-if = "loggedIn" class="button is-info" @click="logout">Logout</button>
             </a>
           </div>
         </b-navbar-item>
@@ -45,13 +44,28 @@
 <script>
 export default {
   name: "Header",
+  props: ['URL','loggedIn'],
+  methods: {
+    logout: function(){
+      this.$emit()('logout')
+    }
+  }
 };
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
 .header {
     width: 90%;
     margin: 10px auto
 }
+
+span.logo{
+  font-family: Fredoka One,serif;
+  font-size: 2em;
+  color: royalblue;
+}
+
 
 </style>
