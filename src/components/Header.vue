@@ -31,8 +31,8 @@
               <strong>Sign up</strong>
             </a>
             <a class="button is-light">
-              <router-link to="/login" v-bind:URL="URL" v-if="!loggedIn"><button class="button is-info">Log in</button></router-link>
-                <button v-if = "loggedIn" class="button is-info" @click="logout">Logout</button>
+              <router-link :to= "{ name: 'Login', query: { URL: this.URL }}" v-bind:URL="URL" v-if="!loggedIn"><button class="button is-info">Log in</button></router-link>
+               <button v-if = "loggedIn" class= "is-primary" click="logout">Logout</button>
             </a>
           </div>
         </b-navbar-item>

@@ -32,7 +32,7 @@ export default {
       console.log("event heard")
       this.loggedIn = false
       this.tokens = event
-      this.$router.push('/main')
+      this.$router.push({ path: 'Main', query: { tokens: this.tokens, URL: this.URL } });
     },
     logout: function(){
       this.loggedIn = false
