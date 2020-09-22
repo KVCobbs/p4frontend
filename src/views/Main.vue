@@ -4,21 +4,24 @@
 
    <li v-for="insults of insults" v-bind:key="insults.id" >
       <b-message title="Most recent insult" type="is-dark" has-icon icon="account" aria-close-label="Close message">
-        {{insults}}
+        {{insults.text}}
         <br>
 
         <b-button v-bind:id ="insults" @click="()=> deleteInsult(insults.id)" rounded>Delete</b-button>
+        <button v-bind:id="insults.id" v-on:click="() => {editSelect(insults.id, insults.text)}" rounded>Edit</button>
 
-        <b-button rounded  v-bind:id=insults.id @click="editInsult()">Edit</b-button>
-        <button v-bind:id="insults.id" v-on:click="() => {editSelect(insults.id, insults.text)}">Edit</button>
+        <!-- <b-button rounded  v-bind:id=insults.id @click="editInsult()">Edit</b-button> -->
+        <!-- <button v-bind:id="insults.id" v-on:click="() => {editSelect(insults.id, insults.text)}">Edit</button> -->
 
         </b-message>
 
 
-             <b-field label="Edit">
+             <b-field label="Edit" v-if="insults.id===editid">
             <b-input type="text" v-model="editmessage" maxlength="30" rounded>Edit</b-input>
         </b-field>
-                <b-button rounded @click="editInsult">Edit</b-button>
+     <button v-bind:id="insults.id" v-if="insults.id===editid" v-on:click="() => {editInsult(insults.id, insults.text)}" rounded>Submit</button>
+
+              <!--  <b-button rounded @click="editInsult">Edit</b-button> -->
 
    </li>
  </ul>
@@ -121,7 +124,7 @@ export default {
       const token = this.$route.query.tokens;
       //const = event.target.id;
       const id = this.editid;
-      //console.log(editInsultID);
+      console.log(id);
 
       fetch(`http://localhost:8000/api/insults/${id}/`, {
         method: 'PATCH',
@@ -129,11 +132,12 @@ export default {
           authorization: `JWT ${token}`,
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({name: this.editmessage})
+        body: JSON.stringify({text: this.editmessage})
       })
           .then(() => {
             this.getInsult()
           });
+      console.log("Is this working")
        }
     }
 }
