@@ -60,7 +60,8 @@ An age restriction portion of sign up
 
 
 Additional Libraries
-N/A
+Buefy 
+Bulma
 
 
 
