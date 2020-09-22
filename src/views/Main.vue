@@ -8,7 +8,9 @@
         <br>
 
         <b-button v-bind:id ="insults" @click="()=> deleteInsult(insults.id)" rounded>Delete</b-button>
-        <b-button rounded v-model:id="editid" @click="(insult.id)">Edit</b-button>
+
+        <b-button rounded  v-bind:id=insults.id @click="editInsult()">Edit</b-button>
+        <button v-bind:id="insults.id" v-on:click="() => {editSelect(insults.id, insults.text)}">Edit</button>
 
         </b-message>
 
@@ -16,7 +18,8 @@
              <b-field label="Edit">
             <b-input type="text" v-model="editmessage" maxlength="30" rounded>Edit</b-input>
         </b-field>
-        <br>
+                <b-button rounded @click="editInsult">Edit</b-button>
+
    </li>
  </ul>
 
@@ -39,7 +42,8 @@ export default {
       insults: [],
       message: "",
       editmessage: "",
-      editid: null
+      editInsultID: "",
+      editid: null,
     };
   },
   created: function() {
@@ -109,23 +113,29 @@ export default {
         this.getInsult()
       });
     },
-    editSelect: function(id,content){
-      this.editid = id
-      this.editmessage = content
+    editSelect: function(id,text){
+      this.editid = id;
+      this.editmessage = text;
     },
-    editInsult: function(id){
-      const token = this.$route.query.tokens
-      //const = event.target.id
-       fetch(`http://localhost:8000/api/insults/${id}/`, {
-        method: 'delete',
+    editInsult: function() {
+      const token = this.$route.query.tokens;
+      //const = event.target.id;
+      const id = this.editid;
+      //console.log(editInsultID);
+
+      fetch(`http://localhost:8000/api/insults/${id}/`, {
+        method: 'PATCH',
         headers: {
           authorization: `JWT ${token}`,
-          "Content-Type":"application/json"
+          "Content-Type": "application/json"
         },
-    })
-      .then(() => {
-        this.getInsult()
+        body: JSON.stringify({name: this.editmessage})
       })
+          .then(() => {
+            this.getInsult()
+          });
+       }
+    }
 }
 </script>
 
