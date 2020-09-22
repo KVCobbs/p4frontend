@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <img src = "https://bettercoffeeathome.com/wp-content/uploads/2017/08/why-is-coffee-bitter.jpg">
 
   </div>
 </template>
@@ -14,3 +15,9 @@ export default {
   }
 }
 </script>
+
+<style>
+ body{
+   color: royalblue;
+ }
+</style>

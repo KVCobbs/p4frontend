@@ -45,6 +45,10 @@ export default {
 </script>
 
 <style>
+body{
+  color: royalblue;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -54,7 +58,7 @@ export default {
 }
 
 #nav {
-  padding: 30px;
+  padding: 50px;
 }
 
 #nav a {

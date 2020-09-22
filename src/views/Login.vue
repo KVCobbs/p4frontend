@@ -13,7 +13,7 @@
             </b-input>
         </b-field>
     <br/>
-    <button class="button is-info is-outlined" @click="handleLogin">Log In</button>
+    <button class="button is-info" @click="handleLogin">Log In</button>
   </div>
 </template>
 <script>
